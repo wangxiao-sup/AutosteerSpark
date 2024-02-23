@@ -1,2 +1,0 @@
-# AutosteerSpark
-Autosteer in Spark
