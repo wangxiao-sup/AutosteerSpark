@@ -1,9 +1,6 @@
 playground/
 data/*.pkl
-evaluation/
-logs/
 *.dylib
-results/
 *.DS_Store
 
 # Byte-compiled / optimized / DLL files
