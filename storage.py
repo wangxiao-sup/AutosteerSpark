@@ -32,7 +32,7 @@ def _db():
     @event.listens_for(ENGINE, 'connect')
     def connect(dbapi_conn, _):
         """Load SQLite extension for median calculation"""
-        extension_path = './sqlean-extensions/stats.dylib'
+        extension_path = './sqlean-extensions/stats.dll'
         if not os.path.isfile(extension_path):
             logger.fatal('Please, first download the required sqlite3 extension using sqlean-extensions/download.sh')
             sys.exit(1)
@@ -243,7 +243,7 @@ def register_measurement(query_path, disabled_rules, walltime, input_data_size, 
                 SELECT id, :walltime, :host, :time, :input_data_size, :nodes FROM query_optimizer_configs 
                 WHERE query_id = (SELECT id FROM queries WHERE query_path = :query_path) AND disabled_rules = :disabled_rules 
                 """
-        conn.execute(query, walltime=walltime, host=socket.gethostname(), time=now.strftime('%m/%d/%y, %h:%m:%s'), input_data_size=input_data_size, nodes=nodes,
+        conn.execute(query, walltime=walltime, host=socket.gethostname(), time=now.strftime('%Y-%m-%D, %H:%M:%S'), input_data_size=input_data_size, nodes=nodes,
                      query_path=query_path, disabled_rules=str(disabled_rules))
 
 

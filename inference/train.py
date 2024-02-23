@@ -144,8 +144,8 @@ def _choose_best_plans(query_plan_preprocessor, filename: str, test_configs: lis
 
 def train_tcnn(connector, bench: str, retrain: bool, create_datasets: bool):
     query_plan_preprocessor = connector.get_plan_preprocessor()()
-    model_name = f'nn/model/{bench.split("/")[-1]}_model'
-    data_path = f'nn/data/{bench.split("/")[-1]}_data'
+    model_name = f'nn/model/_model'
+    data_path = f'nn/data/_data'
 
     if create_datasets:
         x_train, y_train, x_test, y_test, training_data, test_data = _load_data(bench, training_ratio=0.8)
