@@ -1,0 +1,550 @@
+2024-02-28 17:06:58 INFO     check and load database job...
+2024-02-28 17:06:59 INFO     check and load database tpcds...
+2024-02-28 17:06:59 INFO     Run AutoSteer's inference mode
+2024-02-28 17:06:59 INFO     No existing forest found, waiting for fit to build one
+2024-02-28 17:06:59 INFO     training samples: 668, test samples: 156
+2024-02-28 17:06:59 INFO     Building forest...
+2024-02-28 17:07:02 INFO     fit: loading forest...
+2024-02-28 17:07:02 INFO     Get op_list: ['Scan csv spark_catalog.tpcds.inventory', 'Filter', 'Scan csv spark_catalog.tpcds.item', 'BroadcastExchange', 'BroadcastHashJoin Inner BuildRight', 'Project', 'Scan csv spark_catalog.tpcds.warehouse', 'Scan csv spark_catalog.tpcds.date_dim', 'HashAggregate', 'Exchange', 'Sort', 'SortMergeJoin Inner', 'AdaptiveSparkPlan', 'Scan csv spark_catalog.tpcds.web_sales', 'CollectLimit', 'SortMergeJoin LeftOuter', 'Scan csv spark_catalog.tpcds.store_sales', 'Scan csv spark_catalog.tpcds.store', 'Window', 'SortMergeJoin LeftSemi', 'Expand', 'TakeOrderedAndProject', 'Scan csv spark_catalog.tpcds.customer_demographics', 'Scan csv spark_catalog.tpcds.promotion', 'Scan csv spark_catalog.tpcds.customer', 'Scan csv spark_catalog.tpcds.catalog_sales', 'Scan csv spark_catalog.tpcds.web_returns', 'Scan csv spark_catalog.tpcds.catalog_returns', 'Scan csv spark_catalog.tpcds.store_returns', 'Union', 'BroadcastHashJoin LeftOuter BuildRight', 'SortMergeJoin ExistenceJoin', 'Scan csv spark_catalog.tpcds.customer_address', 'BroadcastHashJoin Inner BuildLeft', 'Scan csv spark_catalog.tpcds.household_demographics', 'CartesianProduct Inner', 'BroadcastNestedLoopJoin Inner BuildRight', 'Scan csv spark_catalog.tpcds.ship_mode', 'Scan csv spark_catalog.tpcds.call_center', 'BroadcastHashJoin LeftAnti BuildRight', 'Scan csv spark_catalog.tpcds.web_site', 'SortMergeJoin LeftAnti', 'BroadcastHashJoin LeftSemi BuildRight', 'Scan csv spark_catalog.tpcds.time_dim', 'SortMergeJoin FullOuter', 'Scan csv spark_catalog.tpcds.catalog_page', 'BroadcastHashJoin ExistenceJoin BuildRight', 'Scan csv spark_catalog.tpcds.web_page', 'Scan csv spark_catalog.tpcds.income_band', 'Scan csv spark_catalog.tpcds.reason']
+2024-02-28 17:07:02 INFO     Get column_list: ['dv_version', 'dv_cmdline_args', 'ca_address_sk', 'ca_address_id', 'ca_street_number', 'ca_street_name', 'ca_street_type', 'ca_suite_number', 'ca_city', 'ca_county', 'ca_state', 'ca_zip', 'ca_country', 'ca_gmt_offset', 'ca_location_type', 'cd_demo_sk', 'cd_gender', 'cd_marital_status', 'cd_education_status', 'cd_purchase_estimate', 'cd_credit_rating', 'cd_dep_count', 'cd_dep_employed_count', 'cd_dep_college_count', 'd_date_sk', 'd_date_id', 'd_date', 'd_month_seq', 'd_week_seq', 'd_quarter_seq', 'd_year', 'd_dow', 'd_moy', 'd_dom', 'd_qoy', 'd_fy_year', 'd_fy_quarter_seq', 'd_fy_week_seq', 'd_day_name', 'd_quarter_name', 'd_holiday', 'd_weekend', 'd_following_holiday', 'd_first_dom', 'd_last_dom', 'd_same_day_ly', 'd_same_day_lq', 'd_current_day', 'd_current_week', 'd_current_month', 'd_current_quarter', 'd_current_year', 'w_warehouse_sk', 'w_warehouse_id', 'w_warehouse_name', 'w_warehouse_sq_ft', 'w_street_number', 'w_street_name', 'w_street_type', 'w_suite_number', 'w_city', 'w_county', 'w_state', 'w_zip', 'w_country', 'w_gmt_offset', 'sm_ship_mode_sk', 'sm_ship_mode_id', 'sm_type', 'sm_code', 'sm_carrier', 'sm_contract', 't_time_sk', 't_time_id', 't_time', 't_hour', 't_minute', 't_second', 't_am_pm', 't_shift', 't_sub_shift', 't_meal_time', 'r_reason_sk', 'r_reason_id', 'r_reason_desc', 'ib_income_band_sk', 'ib_lower_bound', 'ib_upper_bound', 'i_item_sk', 'i_item_id', 'i_rec_start_date', 'i_rec_end_date', 'i_item_desc', 'i_current_price', 'i_wholesale_cost', 'i_brand_id', 'i_brand', 'i_class_id', 'i_class', 'i_category_id', 'i_category', 'i_manufact_id', 'i_manufact', 'i_size', 'i_formulation', 'i_color', 'i_units', 'i_container', 'i_manager_id', 'i_product_name', 's_store_sk', 's_store_id', 's_rec_start_date', 's_rec_end_date', 's_closed_date_sk', 's_store_name', 's_number_employees', 's_floor_space', 's_hours', 's_manager', 's_market_id', 's_geography_class', 's_market_desc', 's_market_manager', 's_division_id', 's_division_name', 's_company_id', 's_company_name', 's_street_number', 's_street_name', 's_street_type', 's_suite_number', 's_city', 's_county', 's_state', 's_zip', 's_country', 's_gmt_offset', 's_tax_precentage', 'cc_call_center_sk', 'cc_call_center_id', 'cc_rec_start_date', 'cc_rec_end_date', 'cc_closed_date_sk', 'cc_open_date_sk', 'cc_name', 'cc_class', 'cc_employees', 'cc_sq_ft', 'cc_hours', 'cc_manager', 'cc_mkt_id', 'cc_mkt_class', 'cc_mkt_desc', 'cc_market_manager', 'cc_division', 'cc_division_name', 'cc_company', 'cc_company_name', 'cc_street_number', 'cc_street_name', 'cc_street_type', 'cc_suite_number', 'cc_city', 'cc_county', 'cc_state', 'cc_zip', 'cc_country', 'cc_gmt_offset', 'cc_tax_percentage', 'c_customer_sk', 'c_customer_id', 'c_current_cdemo_sk', 'c_current_hdemo_sk', 'c_current_addr_sk', 'c_first_shipto_date_sk', 'c_first_sales_date_sk', 'c_salutation', 'c_first_name', 'c_last_name', 'c_preferred_cust_flag', 'c_birth_day', 'c_birth_month', 'c_birth_year', 'c_birth_country', 'c_login', 'c_email_address', 'c_last_review_date_sk', 'web_site_sk', 'web_site_id', 'web_rec_start_date', 'web_rec_end_date', 'web_name', 'web_open_date_sk', 'web_close_date_sk', 'web_class', 'web_manager', 'web_mkt_id', 'web_mkt_class', 'web_mkt_desc', 'web_market_manager', 'web_company_id', 'web_company_name', 'web_street_number', 'web_street_name', 'web_street_type', 'web_suite_number', 'web_city', 'web_county', 'web_state', 'web_zip', 'web_country', 'web_gmt_offset', 'web_tax_percentage', 'sr_returned_date_sk', 'sr_return_time_sk', 'sr_item_sk', 'sr_customer_sk', 'sr_cdemo_sk', 'sr_hdemo_sk', 'sr_addr_sk', 'sr_store_sk', 'sr_reason_sk', 'sr_ticket_number', 'sr_return_quantity', 'sr_return_amt', 'sr_return_tax', 'sr_return_amt_inc_tax', 'sr_fee', 'sr_return_ship_cost', 'sr_refunded_cash', 'sr_reversed_charge', 'sr_store_credit', 'sr_net_loss', 'hd_demo_sk', 'hd_income_band_sk', 'hd_buy_potential', 'hd_dep_count', 'hd_vehicle_count', 'wp_web_page_sk', 'wp_web_page_id', 'wp_rec_start_date', 'wp_rec_end_date', 'wp_creation_date_sk', 'wp_access_date_sk', 'wp_autogen_flag', 'wp_customer_sk', 'wp_url', 'wp_type', 'wp_char_count', 'wp_link_count', 'wp_image_count', 'wp_max_ad_count', 'p_promo_sk', 'p_promo_id', 'p_start_date_sk', 'p_end_date_sk', 'p_item_sk', 'p_cost', 'p_response_target', 'p_promo_name', 'p_channel_dmail', 'p_channel_email', 'p_channel_catalog', 'p_channel_tv', 'p_channel_radio', 'p_channel_press', 'p_channel_event', 'p_channel_demo', 'p_channel_details', 'p_purpose', 'p_discount_active', 'cp_catalog_page_sk', 'cp_catalog_page_id', 'cp_start_date_sk', 'cp_end_date_sk', 'cp_department', 'cp_catalog_number', 'cp_catalog_page_number', 'cp_description', 'cp_type', 'inv_date_sk', 'inv_item_sk', 'inv_warehouse_sk', 'inv_quantity_on_hand', 'cr_returned_date_sk', 'cr_returned_time_sk', 'cr_item_sk', 'cr_refunded_customer_sk', 'cr_refunded_cdemo_sk', 'cr_refunded_hdemo_sk', 'cr_refunded_addr_sk', 'cr_returning_customer_sk', 'cr_returning_cdemo_sk', 'cr_returning_hdemo_sk', 'cr_returning_addr_sk', 'cr_call_center_sk', 'cr_catalog_page_sk', 'cr_ship_mode_sk', 'cr_warehouse_sk', 'cr_reason_sk', 'cr_order_number', 'cr_return_quantity', 'cr_return_amount', 'cr_return_tax', 'cr_return_amt_inc_tax', 'cr_fee', 'cr_return_ship_cost', 'cr_refunded_cash', 'cr_reversed_charge', 'cr_store_credit', 'cr_net_loss', 'wr_returned_date_sk', 'wr_returned_time_sk', 'wr_item_sk', 'wr_refunded_customer_sk', 'wr_refunded_cdemo_sk', 'wr_refunded_hdemo_sk', 'wr_refunded_addr_sk', 'wr_returning_customer_sk', 'wr_returning_cdemo_sk', 'wr_returning_hdemo_sk', 'wr_returning_addr_sk', 'wr_web_page_sk', 'wr_reason_sk', 'wr_order_number', 'wr_return_quantity', 'wr_return_amt', 'wr_return_tax', 'wr_return_amt_inc_tax', 'wr_fee', 'wr_return_ship_cost', 'wr_refunded_cash', 'wr_reversed_charge', 'wr_account_credit', 'wr_net_loss', 'ws_sold_date_sk', 'ws_sold_time_sk', 'ws_ship_date_sk', 'ws_item_sk', 'ws_bill_customer_sk', 'ws_bill_cdemo_sk', 'ws_bill_hdemo_sk', 'ws_bill_addr_sk', 'ws_ship_customer_sk', 'ws_ship_cdemo_sk', 'ws_ship_hdemo_sk', 'ws_ship_addr_sk', 'ws_web_page_sk', 'ws_web_site_sk', 'ws_ship_mode_sk', 'ws_warehouse_sk', 'ws_promo_sk', 'ws_order_number', 'ws_quantity', 'ws_wholesale_cost', 'ws_list_price', 'ws_sales_price', 'ws_ext_discount_amt', 'ws_ext_sales_price', 'ws_ext_wholesale_cost', 'ws_ext_list_price', 'ws_ext_tax', 'ws_coupon_amt', 'ws_ext_ship_cost', 'ws_net_paid', 'ws_net_paid_inc_tax', 'ws_net_paid_inc_ship', 'ws_net_paid_inc_ship_tax', 'ws_net_profit', 'cs_sold_date_sk', 'cs_sold_time_sk', 'cs_ship_date_sk', 'cs_bill_customer_sk', 'cs_bill_cdemo_sk', 'cs_bill_hdemo_sk', 'cs_bill_addr_sk', 'cs_ship_customer_sk', 'cs_ship_cdemo_sk', 'cs_ship_hdemo_sk', 'cs_ship_addr_sk', 'cs_call_center_sk', 'cs_catalog_page_sk', 'cs_ship_mode_sk', 'cs_warehouse_sk', 'cs_item_sk', 'cs_promo_sk', 'cs_order_number', 'cs_quantity', 'cs_wholesale_cost', 'cs_list_price', 'cs_sales_price', 'cs_ext_discount_amt', 'cs_ext_sales_price', 'cs_ext_wholesale_cost', 'cs_ext_list_price', 'cs_ext_tax', 'cs_coupon_amt', 'cs_ext_ship_cost', 'cs_net_paid', 'cs_net_paid_inc_tax', 'cs_net_paid_inc_ship', 'cs_net_paid_inc_ship_tax', 'cs_net_profit', 'ss_sold_date_sk', 'ss_sold_time_sk', 'ss_item_sk', 'ss_customer_sk', 'ss_cdemo_sk', 'ss_hdemo_sk', 'ss_addr_sk', 'ss_store_sk', 'ss_promo_sk', 'ss_ticket_number', 'ss_quantity', 'ss_wholesale_cost', 'ss_list_price', 'ss_sales_price', 'ss_ext_discount_amt', 'ss_ext_sales_price', 'ss_ext_wholesale_cost', 'ss_ext_list_price', 'ss_ext_tax', 'ss_coupon_amt', 'ss_net_paid', 'ss_net_paid_inc_tax', 'ss_net_profit']
+2024-02-28 17:07:02 INFO     Feature length: 477
+2024-02-28 17:07:05 INFO     Initial input channels: 478
+2024-02-28 17:07:10 INFO     Epoch 0	train. loss	0.1653
+2024-02-28 17:07:10 INFO     Epoch 0	test loss	0.1352
+2024-02-28 17:07:16 INFO     Epoch 1	train. loss	0.0269
+2024-02-28 17:07:16 INFO     Epoch 1	test loss	0.1262
+2024-02-28 17:07:22 INFO     Epoch 2	train. loss	0.0202
+2024-02-28 17:07:22 INFO     Epoch 2	test loss	0.1306
+2024-02-28 17:07:29 INFO     Epoch 3	train. loss	0.0177
+2024-02-28 17:07:29 INFO     Epoch 3	test loss	0.1186
+2024-02-28 17:07:35 INFO     Epoch 4	train. loss	0.0162
+2024-02-28 17:07:35 INFO     Epoch 4	test loss	0.1279
+2024-02-28 17:07:41 INFO     Epoch 5	train. loss	0.0163
+2024-02-28 17:07:41 INFO     Epoch 5	test loss	0.1138
+2024-02-28 17:07:47 INFO     Epoch 6	train. loss	0.0141
+2024-02-28 17:07:47 INFO     Epoch 6	test loss	0.1334
+2024-02-28 17:07:54 INFO     Epoch 7	train. loss	0.0141
+2024-02-28 17:07:54 INFO     Epoch 7	test loss	0.1147
+2024-02-28 17:08:00 INFO     Epoch 8	train. loss	0.0128
+2024-02-28 17:08:00 INFO     Epoch 8	test loss	0.1271
+2024-02-28 17:08:06 INFO     Epoch 9	train. loss	0.0134
+2024-02-28 17:08:06 INFO     Epoch 9	test loss	0.1276
+2024-02-28 17:08:12 INFO     Epoch 10	train. loss	0.0117
+2024-02-28 17:08:12 INFO     Epoch 10	test loss	0.1154
+2024-02-28 17:08:18 INFO     Epoch 11	train. loss	0.0127
+2024-02-28 17:08:18 INFO     Epoch 11	test loss	0.1209
+2024-02-28 17:08:24 INFO     Epoch 12	train. loss	0.0114
+2024-02-28 17:08:24 INFO     Epoch 12	test loss	0.1200
+2024-02-28 17:08:31 INFO     Epoch 13	train. loss	0.0111
+2024-02-28 17:08:31 INFO     Epoch 13	test loss	0.1110
+2024-02-28 17:08:37 INFO     Epoch 14	train. loss	0.0112
+2024-02-28 17:08:37 INFO     Epoch 14	test loss	0.1234
+2024-02-28 17:08:43 INFO     Epoch 15	train. loss	0.0107
+2024-02-28 17:08:43 INFO     Epoch 15	test loss	0.1073
+2024-02-28 17:08:49 INFO     Epoch 16	train. loss	0.0106
+2024-02-28 17:08:49 INFO     Epoch 16	test loss	0.1223
+2024-02-28 17:08:55 INFO     Epoch 17	train. loss	0.0103
+2024-02-28 17:08:55 INFO     Epoch 17	test loss	0.1225
+2024-02-28 17:09:01 INFO     Epoch 18	train. loss	0.0099
+2024-02-28 17:09:01 INFO     Epoch 18	test loss	0.1012
+2024-02-28 17:09:08 INFO     Epoch 19	train. loss	0.0105
+2024-02-28 17:09:08 INFO     Epoch 19	test loss	0.1157
+2024-02-28 17:09:14 INFO     Epoch 20	train. loss	0.0096
+2024-02-28 17:09:14 INFO     Epoch 20	test loss	0.1019
+2024-02-28 17:09:19 INFO     Epoch 21	train. loss	0.0101
+2024-02-28 17:09:19 INFO     Epoch 21	test loss	0.1164
+2024-02-28 17:09:25 INFO     Epoch 22	train. loss	0.0099
+2024-02-28 17:09:25 INFO     Epoch 22	test loss	0.1101
+2024-02-28 17:09:31 INFO     Epoch 23	train. loss	0.0092
+2024-02-28 17:09:31 INFO     Epoch 23	test loss	0.1255
+2024-02-28 17:09:38 INFO     Epoch 24	train. loss	0.0098
+2024-02-28 17:09:38 INFO     Epoch 24	test loss	0.1101
+2024-02-28 17:09:44 INFO     Epoch 25	train. loss	0.0087
+2024-02-28 17:09:44 INFO     Epoch 25	test loss	0.1066
+2024-02-28 17:09:50 INFO     Epoch 26	train. loss	0.0084
+2024-02-28 17:09:50 INFO     Epoch 26	test loss	0.1171
+2024-02-28 17:09:57 INFO     Epoch 27	train. loss	0.0093
+2024-02-28 17:09:57 INFO     Epoch 27	test loss	0.1141
+2024-02-28 17:10:03 INFO     Epoch 28	train. loss	0.0088
+2024-02-28 17:10:03 INFO     Epoch 28	test loss	0.1154
+2024-02-28 17:10:09 INFO     Epoch 29	train. loss	0.0093
+2024-02-28 17:10:09 INFO     Epoch 29	test loss	0.1225
+2024-02-28 17:10:15 INFO     Epoch 30	train. loss	0.0086
+2024-02-28 17:10:15 INFO     Epoch 30	test loss	0.1178
+2024-02-28 17:10:22 INFO     Epoch 31	train. loss	0.0088
+2024-02-28 17:10:22 INFO     Epoch 31	test loss	0.1075
+2024-02-28 17:10:28 INFO     Epoch 32	train. loss	0.0092
+2024-02-28 17:10:28 INFO     Epoch 32	test loss	0.1264
+2024-02-28 17:10:34 INFO     Epoch 33	train. loss	0.0090
+2024-02-28 17:10:34 INFO     Epoch 33	test loss	0.1210
+2024-02-28 17:10:40 INFO     Epoch 34	train. loss	0.0089
+2024-02-28 17:10:40 INFO     Epoch 34	test loss	0.1150
+2024-02-28 17:10:40 INFO     Stopped training from convergence condition at epoch 34
+2024-02-28 17:10:42 INFO     Load Bao regression model from directory nn/model/_model ...
+2024-02-28 17:10:42 INFO     Preprocess data for query ./benchmark/queries/tpcds/010.sql
+2024-02-28 17:10:42 INFO     y:	3616597.50	3633508.50	3710272.50	4074246.50	4603662.00	4934008.50	4972754.50	5010196.50	5289266.00	10097174.50
+2024-02-28 17:10:42 INFO     min predicted index: 9 (smaller is better)
+2024-02-28 17:10:42 INFO     best choice -> 0.7855914487206055: disabled rules: PruneFilters
+2024-02-28 17:10:42 INFO     bad choice -> 2.1932918837221327: disabled rules: ColumnPruning
+2024-02-28 17:10:42 INFO     Preprocess data for query ./benchmark/queries/tpcds/015.sql
+2024-02-28 17:10:42 INFO     y:	1989275.50	3917969.00	6018294.00
+2024-02-28 17:10:42 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:42 INFO     best choice -> 0.5077313016003955: disabled rules: ConstantFolding
+2024-02-28 17:10:42 INFO     good choice -> 0.5077313016003955: disabled rules: ConstantFolding
+2024-02-28 17:10:42 INFO     Preprocess data for query ./benchmark/queries/tpcds/018.sql
+2024-02-28 17:10:43 INFO     y:	3778086.50	4918545.00	4947477.00	5064701.00	5248831.00	7246906.50	7368094.00	7814449.50	9628324.50
+2024-02-28 17:10:43 INFO     min predicted index: 8 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.48347442772520316: disabled rules: RemoveNoopOperators
+2024-02-28 17:10:43 INFO     bad choice -> 1.2321180781832424: disabled rules: ColumnPruning
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/019.sql
+2024-02-28 17:10:43 INFO     y:	2189056.00	7006638.00
+2024-02-28 17:10:43 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:43 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/024.sql
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/031.sql
+2024-02-28 17:10:43 INFO     y:	2452520.00	7764640.00
+2024-02-28 17:10:43 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:43 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/033.sql
+2024-02-28 17:10:43 INFO     y:	2401864.50	2417629.50	2427466.00	2438832.00	2513632.50	2520916.50	2602893.50	2620892.00	2640278.00	2645985.50	2699967.50	2708577.50	2730028.00	2742431.50	3132919.00	12078835.00
+2024-02-28 17:10:43 INFO     min predicted index: 15 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.7666538777414929: disabled rules: RemoveNoopOperators,RemoveRedundantAliases
+2024-02-28 17:10:43 INFO     bad choice -> 3.855457163112101: disabled rules: ColumnPruning
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/041.sql
+2024-02-28 17:10:43 INFO     y:	10271845.00	10361882.00	10383498.00	10432918.50	10458847.50	10467533.00	10467636.00	10467922.00	10480937.50	10484092.50	10488696.00	10525016.00	10530565.50	10548762.50	10554759.50	10556907.50	10564834.50	10571006.00	10588377.50	10665814.50	10676444.00	10694912.50	10725618.00	10753413.00	10819013.50	11315893.50	13060898.50
+2024-02-28 17:10:43 INFO     min predicted index: 26 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.9077360970214151: disabled rules: ConstantFolding,PushFoldableIntoBranches,RemoveNoopOperators
+2024-02-28 17:10:43 INFO     bad choice -> 1.1542083265453142: disabled rules: ColumnPruning
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/046.sql
+2024-02-28 17:10:43 INFO     y:	768577.00	776619.50	806640.00	999255.50	3068613.50
+2024-02-28 17:10:43 INFO     min predicted index: 4 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.7691496319009502: disabled rules: ConstantFolding,SimplifyConditionals
+2024-02-28 17:10:43 INFO     bad choice -> 3.0708997848898507: disabled rules: ColumnPruning
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/053.sql
+2024-02-28 17:10:43 INFO     y:	1609912.50	5273444.50
+2024-02-28 17:10:43 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:43 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/055.sql
+2024-02-28 17:10:43 INFO     y:	1026716.50	3136805.00
+2024-02-28 17:10:43 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:43 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/063.sql
+2024-02-28 17:10:43 INFO     y:	1389001.50	1437850.50	1440875.50	1442789.50	1450792.00	1473189.00	1475073.50	1489942.50	1494342.50	1499410.50	1504787.50	1532994.00	1537568.50	1554870.50	1754633.50	5956373.00
+2024-02-28 17:10:43 INFO     min predicted index: 9 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.7916191614944089: disabled rules: ConstantFolding,OptimizeIn,RemoveNoopOperators
+2024-02-28 17:10:43 INFO     good choice -> 0.8545434131971149: disabled rules: OptimizeIn
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/064.sql
+2024-02-28 17:10:43 INFO     y:	251342.50	253858.00	259861.00	289653.50	298190.50
+2024-02-28 17:10:43 INFO     min predicted index: 4 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.8677350696608189: disabled rules: ConstantFolding,EliminateLimits
+2024-02-28 17:10:43 INFO     bad choice -> 1.0294731463628093: disabled rules: ColumnPruning
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/068.sql
+2024-02-28 17:10:43 INFO     y:	1627299.50	1769390.50	6094783.00
+2024-02-28 17:10:43 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.9196949458019583: disabled rules: CollapseProject
+2024-02-28 17:10:43 INFO     bad choice -> 3.444566363388975: disabled rules: ColumnPruning
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/069.sql
+2024-02-28 17:10:43 INFO     y:	1642172.50	1786076.00	3775927.50
+2024-02-28 17:10:43 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.9194303601862407: disabled rules: ConstantFolding
+2024-02-28 17:10:43 INFO     good choice -> 0.9194303601862407: disabled rules: ConstantFolding
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/076.sql
+2024-02-28 17:10:43 INFO     y:	962974.00	970664.00	971633.00	975563.50	990754.00	1000602.00	1024516.00	1029099.50	1032830.50	1037445.50	1070921.50	1071421.00	1072323.50	1125628.00	1680010.50	3838416.50
+2024-02-28 17:10:43 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.5731952270536405: disabled rules: ConstantFolding,OptimizeIn,SimplifyConditionals
+2024-02-28 17:10:43 INFO     good choice -> 0.5731952270536405: disabled rules: ConstantFolding,OptimizeIn,SimplifyConditionals
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/084.sql
+2024-02-28 17:10:43 INFO     y:	748236.00	813585.00	815507.50	959119.50	1786988.00
+2024-02-28 17:10:43 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.7801280236717114: disabled rules: CollapseProject
+2024-02-28 17:10:43 INFO     good choice -> 0.8482623906614348: disabled rules: CollapseProject,EliminateOuterJoin
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/088.sql
+2024-02-28 17:10:43 INFO     y:	1390210.50	1589402.50	1738606.50	2900852.00
+2024-02-28 17:10:43 INFO     min predicted index: 3 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.8746749171465378: disabled rules: BooleanSimplification
+2024-02-28 17:10:43 INFO     bad choice -> 1.8251210753726637: disabled rules: ColumnPruning
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/089.sql
+2024-02-28 17:10:43 INFO     y:	633113.50	635368.50	638043.00	640057.00	653444.00	664712.50	684452.50	686176.50	703708.50	723596.00	732513.00	743784.00	752041.50	793980.00	925807.00	1950207.50
+2024-02-28 17:10:43 INFO     min predicted index: 15 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.6838504137471417: disabled rules: CollapseProject,RemoveRedundantAliases
+2024-02-28 17:10:43 INFO     bad choice -> 2.106494658173896: disabled rules: ColumnPruning
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/096.sql
+2024-02-28 17:10:43 INFO     y:	116153.50	128650.50	2009865.00
+2024-02-28 17:10:43 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:43 INFO     bad choice -> 17.30352507673036: disabled rules: ColumnPruning
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/101.sql
+2024-02-28 17:10:43 INFO     y:	1055351.00	1299333.50	3322803.00
+2024-02-28 17:10:43 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.8122248829880858: disabled rules: ConstantFolding
+2024-02-28 17:10:43 INFO     bad choice -> 2.5573134226124394: disabled rules: ColumnPruning
+2024-02-28 17:10:43 INFO     Load Bao regression model from directory nn/model/_model ...
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/000.sql
+2024-02-28 17:10:43 INFO     y:	815084.50	857343.00	880204.00	978495.00	2103261.50	4142805.50	8869559.50
+2024-02-28 17:10:43 INFO     min predicted index: 6 (smaller is better)
+2024-02-28 17:10:43 INFO     best choice -> 0.8329981246710509: disabled rules: EliminateOuterJoin
+2024-02-28 17:10:43 INFO     bad choice -> 9.064491387283532: disabled rules: ColumnPruning,EliminateOuterJoin
+2024-02-28 17:10:43 INFO     Preprocess data for query ./benchmark/queries/tpcds/001.sql
+2024-02-28 17:10:44 INFO     y:	2207021.50	6282198.00	8362485.00
+2024-02-28 17:10:44 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 0.3513135848312963: disabled rules: SimplifyConditionals
+2024-02-28 17:10:44 INFO     bad choice -> 1.3311399927222924: disabled rules: ColumnPruning
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/002.sql
+2024-02-28 17:10:44 INFO     y:	3235388.50	5437429.50
+2024-02-28 17:10:44 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:44 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/003.sql
+2024-02-28 17:10:44 INFO     y:	4875620.00	5041626.50	5107540.50	5170334.00	5640306.50	5746386.50	5769152.50	5776528.00	5864345.00	5945601.50	6177436.50	6182326.00	6277991.50	6326611.00	6379607.50	6397645.50	6400051.00	6400458.00	6463022.50	6482016.50	6696135.50	6768577.50	6932094.00	7115507.00	7136743.50	8146761.50	10472783.00	14129718.00
+2024-02-28 17:10:44 INFO     min predicted index: 27 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 0.5984733933845983: disabled rules: PruneFilters,RemoveNoopOperators,RemoveRedundantAliases
+2024-02-28 17:10:44 INFO     bad choice -> 1.7343969134238189: disabled rules: ColumnPruning
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/004.sql
+2024-02-28 17:10:44 INFO     y:	2049797.50	2163215.50	2480270.00	2603436.00	3026470.00	3041425.50	3097672.50	3134013.00	3226630.00	3303226.50	3327422.00	3329633.50	3391672.00	3434666.50	3597720.50	3737553.00	3792771.50	3813526.00	3930614.50	4045857.50	4430450.00	6239318.00
+2024-02-28 17:10:44 INFO     min predicted index: 21 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 0.5484330255651224: disabled rules: RemoveNoopOperators
+2024-02-28 17:10:44 INFO     bad choice -> 1.6693590699583392: disabled rules: ColumnPruning
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/005.sql
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/006.sql
+2024-02-28 17:10:44 INFO     y:	2737425.50	8557932.50
+2024-02-28 17:10:44 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:44 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/007.sql
+2024-02-28 17:10:44 INFO     y:	2514938.00	2795665.00	3381801.00	6263501.50
+2024-02-28 17:10:44 INFO     min predicted index: 3 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 0.8995848930397597: disabled rules: OptimizeIn
+2024-02-28 17:10:44 INFO     bad choice -> 2.240433492567958: disabled rules: ColumnPruning
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/008.sql
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/009.sql
+2024-02-28 17:10:44 INFO     y:	4286361.00	4774925.50	11225684.00
+2024-02-28 17:10:44 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:44 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/011.sql
+2024-02-28 17:10:44 INFO     y:	1065115.00	1169454.00	2020736.50
+2024-02-28 17:10:44 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:44 INFO     bad choice -> 1.8972003023147734: disabled rules: ColumnPruning
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/012.sql
+2024-02-28 17:10:44 INFO     y:	2592270.50	5179362.50	8317763.50	69521365.00
+2024-02-28 17:10:44 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:44 INFO     bad choice -> 3.2086788396504144: disabled rules: ColumnPruning
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/013.sql
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/014.sql
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/016.sql
+2024-02-28 17:10:44 INFO     y:	1943642.50	2131159.00	3982243.00	4681408.50	4790186.00	7024078.00	13997887.00
+2024-02-28 17:10:44 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 0.4880773222528108: disabled rules: EliminateLimits
+2024-02-28 17:10:44 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/017.sql
+2024-02-28 17:10:44 INFO     y:	2597296.50	10766233.50
+2024-02-28 17:10:44 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:44 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/020.sql
+2024-02-28 17:10:44 INFO     y:	970187.00	2117720.50	5307995.00
+2024-02-28 17:10:44 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:44 INFO     best choice -> 0.45812797297849267: disabled rules: ConstantFolding
+2024-02-28 17:10:44 INFO     bad choice -> 2.506466268801761: disabled rules: ColumnPruning
+2024-02-28 17:10:44 INFO     Preprocess data for query ./benchmark/queries/tpcds/021.sql
+2024-02-28 17:10:45 INFO     y:	5940901.00	7738364.50	7768017.00	7904462.00	8050908.50	8493847.50	8961965.00	9991613.50	10252758.00	10258192.00
+2024-02-28 17:10:45 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.7515882801384838: disabled rules: ConstantFolding
+2024-02-28 17:10:45 INFO     good choice -> 0.7515882801384838: disabled rules: ConstantFolding
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/022.sql
+2024-02-28 17:10:45 INFO     y:	3965490.50	4030027.50	6122649.00	16471799.00
+2024-02-28 17:10:45 INFO     min predicted index: 3 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.9839859653563158: disabled rules: RemoveNoopOperators
+2024-02-28 17:10:45 INFO     bad choice -> 4.087267146440068: disabled rules: ColumnPruning
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/023.sql
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/025.sql
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/026.sql
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/027.sql
+2024-02-28 17:10:45 INFO     y:	4053935.00	8668458.00
+2024-02-28 17:10:45 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:45 INFO     bad choice -> 2.1382824342274853: disabled rules: ColumnPruning
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/028.sql
+2024-02-28 17:10:45 INFO     y:	1604857.50	6013504.00
+2024-02-28 17:10:45 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:45 INFO     bad choice -> 3.7470641474398816: disabled rules: ColumnPruning
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/029.sql
+2024-02-28 17:10:45 INFO     y:	2323342.00	2457503.00	2615466.50	2716163.50	2764201.50	7100930.50
+2024-02-28 17:10:45 INFO     min predicted index: 5 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.8553763424035409: disabled rules: OptimizeIn,RemoveNoopOperators
+2024-02-28 17:10:45 INFO     bad choice -> 2.6143236590875327: disabled rules: ColumnPruning
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/030.sql
+2024-02-28 17:10:45 INFO     y:	2910426.00	3054874.00	3129728.00	3388344.00	3559947.00	3805548.00	3832063.00	3983782.00	4493568.50	4550509.50	9553658.00
+2024-02-28 17:10:45 INFO     min predicted index: 10 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.7305685903495723: disabled rules: EliminateLimits
+2024-02-28 17:10:45 INFO     bad choice -> 2.3981377495053695: disabled rules: ColumnPruning
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/032.sql
+2024-02-28 17:10:45 INFO     y:	839812.50	896536.50	906703.00	925406.50	2696123.50
+2024-02-28 17:10:45 INFO     min predicted index: 4 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.9075065930485684: disabled rules: CollapseProject,EliminateOuterJoin
+2024-02-28 17:10:45 INFO     bad choice -> 2.9134477659277302: disabled rules: ColumnPruning
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/034.sql
+2024-02-28 17:10:45 INFO     y:	875265.50	889699.00	897375.00	909253.50	945752.50	1040218.50	1055401.50	1142466.00	3903957.00
+2024-02-28 17:10:45 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.7661195169046606: disabled rules: ConstantFolding,EliminateLimits,EliminateOuterJoin
+2024-02-28 17:10:45 INFO     good choice -> 0.7661195169046606: disabled rules: ConstantFolding,EliminateLimits,EliminateOuterJoin
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/035.sql
+2024-02-28 17:10:45 INFO     y:	1489536.50	1531928.50	1541181.50	1554314.50	1555913.00	1561735.50	1563404.00	1567434.00	1569318.00	1606372.00	1630525.00	1638234.00	1642995.50	1648964.50	1827487.00	6361351.00
+2024-02-28 17:10:45 INFO     min predicted index: 7 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.8150736503187164: disabled rules: ConstantFolding,OptimizeIn,RemoveNoopOperators
+2024-02-28 17:10:45 INFO     good choice -> 0.857699124535496: disabled rules: ConstantFolding
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/036.sql
+2024-02-28 17:10:45 INFO     y:	867939.00	878639.50	898348.00	905534.50	908779.50	928956.00	937773.00	939996.00	965748.00	975946.50	1031283.00	1191343.50	1283890.00	3713259.00
+2024-02-28 17:10:45 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.7285379909320864: disabled rules: ConstantFolding,OptimizeIn,SimplifyConditionals
+2024-02-28 17:10:45 INFO     good choice -> 0.7285379909320864: disabled rules: ConstantFolding,OptimizeIn,SimplifyConditionals
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/037.sql
+2024-02-28 17:10:45 INFO     y:	2116984.00	2129088.00	8748655.50
+2024-02-28 17:10:45 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.9943149367240809: disabled rules: RemoveNoopOperators
+2024-02-28 17:10:45 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/038.sql
+2024-02-28 17:10:45 INFO     y:	1093586.50	1097733.50	1114616.00	1121171.50	1141332.50	1141504.00	1144363.00	1147784.50	1149999.50	1150338.50	1151808.00	1153159.00	1154244.00	1156923.50	1168104.00	1174832.50	1176473.00	1183429.00	1193915.50	1200113.00	1230766.00	1267821.00	1283441.00	1309758.00	1391045.50	1393275.50	6857478.50
+2024-02-28 17:10:45 INFO     min predicted index: 9 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.7849032728990067: disabled rules: CollapseProject,RemoveNoopOperators,UnwrapCastInBinaryComparison
+2024-02-28 17:10:45 INFO     good choice -> 0.8256360640806503: disabled rules: OptimizeIn,RemoveRedundantAliases,UnwrapCastInBinaryComparison
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/039.sql
+2024-02-28 17:10:45 INFO     y:	518794.50	583159.50	612586.50	2399086.00
+2024-02-28 17:10:45 INFO     min predicted index: 3 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:45 INFO     bad choice -> 4.6243474053792015: disabled rules: ColumnPruning
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/040.sql
+2024-02-28 17:10:45 INFO     y:	1472130.00	1475406.00	1494899.50	1775523.50	8097187.50
+2024-02-28 17:10:45 INFO     min predicted index: 4 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.8291244807517332: disabled rules: EliminateLimits
+2024-02-28 17:10:45 INFO     bad choice -> 4.560450762831357: disabled rules: ColumnPruning
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/042.sql
+2024-02-28 17:10:45 INFO     y:	10205176.50	10205880.00	10272704.00	10296353.50	10296483.00	10325230.50	10346304.50	10352135.00	10381093.00	10381448.00	10483453.50	10509110.00	10518780.50	10600337.00	10681351.00	10719461.00	10737968.50	12795201.00
+2024-02-28 17:10:45 INFO     min predicted index: 17 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.9734555983865432: disabled rules: RemoveRedundantAliases
+2024-02-28 17:10:45 INFO     bad choice -> 1.22051392701842: disabled rules: ColumnPruning
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/043.sql
+2024-02-28 17:10:45 INFO     y:	939925.00	1033666.00	1047371.50	1098515.50	3887681.50
+2024-02-28 17:10:45 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.8556319869860735: disabled rules: ConstantFolding,SimplifyCasts
+2024-02-28 17:10:45 INFO     good choice -> 0.8556319869860735: disabled rules: ConstantFolding,SimplifyCasts
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/044.sql
+2024-02-28 17:10:45 INFO     y:	355380.50	363444.50	363692.50	366815.50	367516.50	368832.50	382133.00	424296.00	1006150.50
+2024-02-28 17:10:45 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.837576833154213: disabled rules: ConstantFolding,EliminateOuterJoin
+2024-02-28 17:10:45 INFO     good choice -> 0.8565824330184588: disabled rules: ConstantFolding,FoldablePropagation
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/045.sql
+2024-02-28 17:10:45 INFO     y:	981961.50	3060124.00
+2024-02-28 17:10:45 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:45 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/047.sql
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/048.sql
+2024-02-28 17:10:45 INFO     y:	815228.50	2900565.50
+2024-02-28 17:10:45 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:45 INFO     bad choice -> 3.5579785299458986: disabled rules: ColumnPruning
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/049.sql
+2024-02-28 17:10:45 INFO     y:	1147407.00	1623838.00	3677321.00
+2024-02-28 17:10:45 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:45 INFO     best choice -> 0.7066018900900213: disabled rules: OptimizeIn
+2024-02-28 17:10:45 INFO     bad choice -> 2.2645861225072945: disabled rules: ColumnPruning
+2024-02-28 17:10:45 INFO     Preprocess data for query ./benchmark/queries/tpcds/050.sql
+2024-02-28 17:10:46 INFO     y:	1678455.50	1703591.00	1715530.50	1721302.50	1738643.50	1748298.00	1751153.50	1759180.50	1761777.50	1762421.50	1768427.50	1771972.50	1774121.50	1778699.00	1784060.50	1785180.00	1813913.50	1819488.50	1824108.00	1834450.00	1844589.50	1847662.50	1881277.00	1906320.50	1909435.00	1925487.50	1945832.50	1955909.50	1972724.50	1988073.00	1989959.50	1993080.00	2004819.50	2016258.50	2032752.00	2046068.00	2046897.50	2047809.00	2084931.50	2129829.00	2268207.00	2785598.50	6822825.00
+2024-02-28 17:10:46 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.6025475315268873: disabled rules: ConstantFolding,PushFoldableIntoBranches
+2024-02-28 17:10:46 INFO     good choice -> 0.6025475315268873: disabled rules: ConstantFolding,PushFoldableIntoBranches
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/051.sql
+2024-02-28 17:10:46 INFO     y:	1428446.00	1591417.50	3988715.00	499474553.50
+2024-02-28 17:10:46 INFO     min predicted index: 3 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:46 INFO     bad choice -> 349.66288785155336: disabled rules: BooleanSimplification
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/052.sql
+2024-02-28 17:10:46 INFO     y:	1646826.00	1954852.00	1963520.50	2032501.00	5986538.50
+2024-02-28 17:10:46 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.8424300151622731: disabled rules: CombineUnions
+2024-02-28 17:10:46 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/054.sql
+2024-02-28 17:10:46 INFO     y:	1821474.50	1836771.00	1905976.50	2522831.00	5185906.50
+2024-02-28 17:10:46 INFO     min predicted index: 3 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.7219962415239071: disabled rules: RemoveNoopOperators
+2024-02-28 17:10:46 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/056.sql
+2024-02-28 17:10:46 INFO     y:	902439.50	902637.00	905301.00	914812.50	914938.00	932848.00	933046.50	935638.50	937957.50	953840.00	965128.50	980362.50	991384.50	1004263.00	1006296.50	1013051.00	1018194.00	1023967.50	1163025.00	3751141.00
+2024-02-28 17:10:46 INFO     min predicted index: 19 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.7759416177640206: disabled rules: CollapseProject,OptimizeIn,PushFoldableIntoBranches
+2024-02-28 17:10:46 INFO     bad choice -> 3.22533135573182: disabled rules: ColumnPruning
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/057.sql
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/058.sql
+2024-02-28 17:10:46 INFO     y:	931648.50	3357791.00
+2024-02-28 17:10:46 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:46 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/059.sql
+2024-02-28 17:10:46 INFO     y:	1405820.50	1437602.50	1439692.00	1440311.50	1450069.50	1476398.00	1487008.00	1700137.50	6180641.50
+2024-02-28 17:10:46 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.8268863547801281: disabled rules: ConstantFolding
+2024-02-28 17:10:46 INFO     good choice -> 0.8268863547801281: disabled rules: ConstantFolding
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/060.sql
+2024-02-28 17:10:46 INFO     y:	1396283.50	1411308.00	1413611.00	1418659.00	1424501.50	1433034.50	1448801.50	1461595.00	1467754.50	1472429.50	1478995.50	1481822.00	1486525.00	1506390.50	1512057.50	1522693.50	1525017.50	1558743.00	1562773.00	1563707.00	1572205.00	1573496.50	1575999.50	1579137.00	1583971.50	1600551.00	1603647.00	1613741.50	1634160.00	1643477.50	1649456.50	1669037.00	1730560.50	1741928.50	1751766.00	1752152.00	1752928.50	1770279.50	1856720.00	1904137.00	2040773.00	2055664.00	5849493.00
+2024-02-28 17:10:46 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.6792372197012742: disabled rules: CollapseProject,PushFoldableIntoBranches,SimplifyConditionals
+2024-02-28 17:10:46 INFO     good choice -> 0.6865460503272909: disabled rules: PushFoldableIntoBranches,RemoveRedundantAliases
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/061.sql
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/062.sql
+2024-02-28 17:10:46 INFO     y:	1272568.00	1476424.50	6602526.50
+2024-02-28 17:10:46 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.8619255505445758: disabled rules: SimplifyConditionals
+2024-02-28 17:10:46 INFO     bad choice -> 4.471970290387351: disabled rules: ColumnPruning
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/065.sql
+2024-02-28 17:10:46 INFO     y:	787351.00	3959823.50
+2024-02-28 17:10:46 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:46 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/066.sql
+2024-02-28 17:10:46 INFO     y:	843465.00	878353.50	880590.00	886656.00	895109.50	901162.50	908934.00	913645.50	913648.00	916285.50	922024.50	929731.00	930098.50	934315.50	937635.50	939523.00	939774.50	968097.50	1123145.50	3547187.00
+2024-02-28 17:10:46 INFO     min predicted index: 19 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.7509846230964733: disabled rules: CollapseProject,ConstantFolding,PushFoldableIntoBranches
+2024-02-28 17:10:46 INFO     bad choice -> 3.1582613294537527: disabled rules: ColumnPruning
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/070.sql
+2024-02-28 17:10:46 INFO     y:	1929862.00	1967034.50	1994110.00	1998069.50	2017922.00	2032619.50	2072078.00	2083096.50	2094956.00	2209638.00	2223475.50	2276651.00	2325483.50	2434482.00	2796736.50	7970041.00
+2024-02-28 17:10:46 INFO     min predicted index: 15 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.6900406956465152: disabled rules: RemoveRedundantAliases
+2024-02-28 17:10:46 INFO     bad choice -> 2.8497647168405034: disabled rules: ColumnPruning
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/071.sql
+2024-02-28 17:10:46 INFO     y:	1327858.50	3485146.50
+2024-02-28 17:10:46 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:46 INFO     bad choice -> 2.6246369624474295: disabled rules: ColumnPruning
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/072.sql
+2024-02-28 17:10:46 INFO     y:	1662942.00	1824637.50	7565649.00
+2024-02-28 17:10:46 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.9113821238465175: disabled rules: RemoveNoopOperators
+2024-02-28 17:10:46 INFO     bad choice -> 4.146384692849949: disabled rules: ColumnPruning
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/073.sql
+2024-02-28 17:10:46 INFO     y:	1473189.00	1509112.00	1511621.50	1519135.00	1532450.00	1537689.00	1547263.50	1567111.00	1582936.00	1588476.00	1618335.00	1655058.50	1787250.00	1796202.50	1889120.00	6465734.50
+2024-02-28 17:10:46 INFO     min predicted index: 15 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.7798281739645972: disabled rules: RemoveNoopOperators,RemoveRedundantAliases,UnwrapCastInBinaryComparison
+2024-02-28 17:10:46 INFO     bad choice -> 3.4226171444905567: disabled rules: ColumnPruning
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/074.sql
+2024-02-28 17:10:46 INFO     y:	1550773.50	1721812.50	6154099.50
+2024-02-28 17:10:46 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:46 INFO     best choice -> 0.9006633997604269: disabled rules: CombineUnions
+2024-02-28 17:10:46 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:46 INFO     Preprocess data for query ./benchmark/queries/tpcds/075.sql
+2024-02-28 17:10:47 INFO     y:	8710926.50	259780004.00
+2024-02-28 17:10:47 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:47 INFO     bad choice -> 29.82231614513106: disabled rules: ColumnPruning
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/077.sql
+2024-02-28 17:10:47 INFO     y:	1970563.50	1990404.50	1993583.00	1995496.00	2005182.00	2117531.00	2173239.50	2182580.50	2185573.00	2190705.50	2211422.50	2222179.00	2249566.50	2254106.50	2273886.00	2283469.50	2283638.00	2289986.00	2292760.50	2294959.00	2309361.00	2410293.50	2419249.00	2553826.50	2815625.50	2944280.00	3143836.00	7494966.50
+2024-02-28 17:10:47 INFO     min predicted index: 18 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 0.6692853600880351: disabled rules: CollapseProject,RemoveRedundantAliases,SimplifyConditionals
+2024-02-28 17:10:47 INFO     good choice -> 0.7787168679609277: disabled rules: CollapseProject,RemoveNoopOperators,RemoveRedundantAliases
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/078.sql
+2024-02-28 17:10:47 INFO     y:	3107574.50	3338703.50	3909374.00	4095508.00	16806093.00
+2024-02-28 17:10:47 INFO     min predicted index: 3 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 0.9307728284347502: disabled rules: RemoveRedundantAliases
+2024-02-28 17:10:47 INFO     bad choice -> 1.2266761633670076: disabled rules: CombineUnions
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/079.sql
+2024-02-28 17:10:47 INFO     y:	1186335.50	1375347.00	3868533.50
+2024-02-28 17:10:47 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 0.8625717727962471: disabled rules: CombineUnions
+2024-02-28 17:10:47 INFO     good choice -> 0.8625717727962471: disabled rules: CombineUnions
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/080.sql
+2024-02-28 17:10:47 INFO     y:	1515083.00	1600475.50	1614239.00	1615599.00	1679640.50	1687552.50	1697444.00	1707736.50	1709443.50	1712922.00	1745234.50	1772754.50	1782717.00	2044121.50	2058716.50	5532036.00
+2024-02-28 17:10:47 INFO     min predicted index: 9 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 0.7359357152866847: disabled rules: ConstantFolding,PushProjectionThroughUnion,RemoveNoopOperators
+2024-02-28 17:10:47 INFO     good choice -> 0.8320339395929454: disabled rules: ConstantFolding
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/081.sql
+2024-02-28 17:10:47 INFO     y:	2169958.50	2779589.00	8927296.50
+2024-02-28 17:10:47 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 0.7806760280027011: disabled rules: ConstantFolding
+2024-02-28 17:10:47 INFO     bad choice -> 3.2117325619003383: disabled rules: ColumnPruning
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/082.sql
+2024-02-28 17:10:47 INFO     y:	1264918.00	3103195.00
+2024-02-28 17:10:47 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:47 INFO     bad choice -> 2.4532776037656197: disabled rules: ColumnPruning
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/083.sql
+2024-02-28 17:10:47 INFO     y:	2130223.50	2137872.50	2153774.00	2162234.50	2349628.50	2498417.50	8995243.50
+2024-02-28 17:10:47 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:47 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/085.sql
+2024-02-28 17:10:47 INFO     y:	1542510.00	1623949.00	1935644.50	7290072.50
+2024-02-28 17:10:47 INFO     min predicted index: 3 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 0.7968973641595861: disabled rules: ConstantFolding
+2024-02-28 17:10:47 INFO     bad choice -> 3.7662248930524176: disabled rules: ColumnPruning
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/086.sql
+2024-02-28 17:10:47 INFO     y:	886354.50	1001779.50	2190241.00
+2024-02-28 17:10:47 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 0.8847800339296222: disabled rules: ConstantFolding
+2024-02-28 17:10:47 INFO     bad choice -> 2.186350389481917: disabled rules: ColumnPruning
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/087.sql
+2024-02-28 17:10:47 INFO     y:	1805881.00	1908363.00	2281312.50
+2024-02-28 17:10:47 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:47 INFO     bad choice -> 1.2632684545659432: disabled rules: ColumnPruning
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/090.sql
+2024-02-28 17:10:47 INFO     y:	1650353.00	1737460.00	7711502.00
+2024-02-28 17:10:47 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:47 INFO     bad choice -> 1.0: disabled rules: None
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/091.sql
+2024-02-28 17:10:47 INFO     y:	2631411.00	3242724.00	16959165.00
+2024-02-28 17:10:47 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 0.8114816432110781: disabled rules: RemoveNoopOperators
+2024-02-28 17:10:47 INFO     bad choice -> 5.229913184100774: disabled rules: ColumnPruning
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/092.sql
+2024-02-28 17:10:47 INFO     y:	876424.00	879679.00	894978.00	895500.00	896232.50	899197.00	904220.50	905754.50	908710.00	915180.50	916967.50	920528.00	922501.00	933403.50	934928.00	939768.50	940796.00	946666.00	946969.50	947141.50	951497.00	955779.00	967247.00	983589.50	995609.50	1138314.50	3606908.50
+2024-02-28 17:10:47 INFO     min predicted index: 26 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 0.7699313326852992: disabled rules: CollapseProject,OptimizeIn,PushFoldableIntoBranches
+2024-02-28 17:10:47 INFO     bad choice -> 3.168639686132435: disabled rules: ColumnPruning
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/093.sql
+2024-02-28 17:10:47 INFO     y:	617294.50	677004.50	2395122.50
+2024-02-28 17:10:47 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:47 INFO     best choice -> 0.9118026541921066: disabled rules: EliminateLimits
+2024-02-28 17:10:47 INFO     bad choice -> 3.5378236038312894: disabled rules: ColumnPruning
+2024-02-28 17:10:47 INFO     Preprocess data for query ./benchmark/queries/tpcds/094.sql
+2024-02-28 17:10:48 INFO     y:	726560.00	738162.00	750192.50	837332.00	1942538.00
+2024-02-28 17:10:48 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:48 INFO     best choice -> 0.8677083880706816: disabled rules: LikeSimplification
+2024-02-28 17:10:48 INFO     good choice -> 0.8677083880706816: disabled rules: LikeSimplification
+2024-02-28 17:10:48 INFO     Preprocess data for query ./benchmark/queries/tpcds/095.sql
+2024-02-28 17:10:48 INFO     y:	706204.50	726240.50	742674.00	766671.50	794504.50	828851.00	834276.00	840310.00	2340714.50
+2024-02-28 17:10:48 INFO     min predicted index: 0 (smaller is better)
+2024-02-28 17:10:48 INFO     best choice -> 0.840409491735193: disabled rules: ConstantFolding,EliminateLimits,EliminateOuterJoin
+2024-02-28 17:10:48 INFO     good choice -> 0.840409491735193: disabled rules: ConstantFolding,EliminateLimits,EliminateOuterJoin
+2024-02-28 17:10:48 INFO     Preprocess data for query ./benchmark/queries/tpcds/097.sql
+2024-02-28 17:10:48 INFO     y:	974772.50	1011010.00	1017094.00	1140498.50	1162781.00	1164128.50	1233926.00	1537827.50	3394456.00
+2024-02-28 17:10:48 INFO     min predicted index: 4 (smaller is better)
+2024-02-28 17:10:48 INFO     best choice -> 0.633863355935565: disabled rules: ConstantFolding,EliminateLimits
+2024-02-28 17:10:48 INFO     good choice -> 0.756119265652357: disabled rules: ConstantFolding,EliminateLimits,RemoveNoopOperators
+2024-02-28 17:10:48 INFO     Preprocess data for query ./benchmark/queries/tpcds/098.sql
+2024-02-28 17:10:48 INFO     y:	1311267.50	2053916.00	2085109.50	2121376.00	8141301.50
+2024-02-28 17:10:48 INFO     min predicted index: 3 (smaller is better)
+2024-02-28 17:10:48 INFO     best choice -> 0.6384231390183435: disabled rules: EliminateLimits
+2024-02-28 17:10:48 INFO     bad choice -> 1.032844575922287: disabled rules: RemoveNoopOperators
+2024-02-28 17:10:48 INFO     Preprocess data for query ./benchmark/queries/tpcds/099.sql
+2024-02-28 17:10:48 INFO     y:	764049.00	1581218.50	3326441.50
+2024-02-28 17:10:48 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:48 INFO     best choice -> 0.48320266933380807: disabled rules: EliminateLimits
+2024-02-28 17:10:48 INFO     bad choice -> 2.1037203270768714: disabled rules: ColumnPruning
+2024-02-28 17:10:48 INFO     Preprocess data for query ./benchmark/queries/tpcds/100.sql
+2024-02-28 17:10:48 INFO     y:	1141780.00	1652734.50	4809073.50
+2024-02-28 17:10:48 INFO     min predicted index: 2 (smaller is better)
+2024-02-28 17:10:48 INFO     best choice -> 0.6908429635855002: disabled rules: EliminateLimits
+2024-02-28 17:10:48 INFO     bad choice -> 2.90976772131277: disabled rules: ColumnPruning
+2024-02-28 17:10:48 INFO     Preprocess data for query ./benchmark/queries/tpcds/102.sql
+2024-02-28 17:10:48 INFO     y:	976068.00	6315909.00
+2024-02-28 17:10:48 INFO     min predicted index: 1 (smaller is better)
+2024-02-28 17:10:48 INFO     best choice -> 1.0: disabled rules: None
+2024-02-28 17:10:48 INFO     bad choice -> 6.470767405549613: disabled rules: ColumnPruning

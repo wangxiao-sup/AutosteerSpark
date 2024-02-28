@@ -83,8 +83,8 @@ def _train_and_save_model(preprocessor, filename, x_train, y_train, x_test, y_te
 def _evaluate_prediction(y, predictions, plans, query_path, is_training) -> PerformancePrediction:
     default_plan = list(filter(lambda x: x.num_disabled_rules == 0, plans))[0]
 
-    logger.info('y:\t%s', '\t'.join([f'{_:.2f}' for _ in y]))
-    logger.info('ŷ:\t%s', '\t'.join(f'{prediction[0]:.2f}' for prediction in predictions))
+    logger.info('y-exec:\t%s', '\t'.join([f'{_:.2f}' for _ in y]))
+    logger.info('y-pred:\t%s', '\t'.join(f'{prediction[0]:.2f}' for prediction in predictions))
     # the plan index which is estimated to perform best by Bao
     min_prediction_index = np.argmin(predictions)
     logger.info('min predicted index: %s (smaller is better)', str(min_prediction_index))
